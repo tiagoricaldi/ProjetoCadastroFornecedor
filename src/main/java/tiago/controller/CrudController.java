@@ -26,7 +26,7 @@ import tiago.dao.FornecedorDAO;
 
 /**
  *
- * @author Tiago
+ * @author Tiago Ricaldi
  */
 @Path("crudcontroller")
 public class CrudController {
