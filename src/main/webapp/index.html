@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastro de Fornecedores</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body ng-app="Cadastro de Fornecedores">
+
+        <div style="margin: 0 60px;"  class="container" ng-controller="CrudController as controller"> 
+
+            <h1 align="center">Cadastro de Fornecedores</h1>
+
+
+            <div style="border: 1px solid royalblue;"
+                 ng-show="controller.fornecedor">
+                <form>
+                    <div  class="form-group">
+                        <label style="margin: 0 2px;" for="fornecedor_id">ID: </label><br>
+                        <input class="form-control" type="number" style="margin: 0 2px;" size="50" id="fornecedor_id" ng-model="controller.fornecedor.id_fornecedor" disabled><br><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="margin: 0 2px;" for="nome">Nome: </label><br>
+                        <input class="form-control" type="text" name="nome"  
+                               pattern="[a-zA-Z\s]+$" 
+                               placeholder="Insira o nome" 
+                               title="Somente letras" required="required" style="margin: 0 2px;" size="50" id="nome" ng-model="controller.fornecedor.nome"><br><br>
+                    </div>    
+                    <div class="form-group">
+                        <label style="margin: 0 2px;" for="email">Email: </label><br>
+                        <input class="form-control" type="email" name="email" 
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                               placeholder="Insira o email"  
+                               title="Somente email"
+                               tabindex="5" required="required" style="margin: 0 2px;" size="50" id="email" ng-model="controller.fornecedor.email" >
+
+                        <br><br>
+                    </div>
+                    <div class="form-group">
+                        <label style="margin: 0 2px;" for="cnpj">CNPJ: </label><br>
+                        <input class="form-control cnpj-mask" placeholder="Ex.: XX.XXX.XXX/XXXX-XX" title="Somente CNPJ" type="text" name="cnpj" tabindex="2" 
+
+                               required="required" style="margin: 0 2px;" size="50" id="cnpj" ng-model="controller.fornecedor.cnpj"><br><br>
+                    </div>
+                    <div class="form-group">
+                        <label style="margin: 0 2px;" for="comentario">Comentários: </label><br>
+                        <input class="form-control" type="text" style="margin: 0 2px;" size="50" id="comentario"  ng-model="controller.fornecedor.comentario"><br><br>
+                    </div>
+
+
+                    <button type="submit" style="width: 100px; height: 50px; margin: 0 30px;" data-ng-click="controller.salvar()">Salvar</button>
+                    <button type="button"  style="width: 100px; height: 50px; margin: 0 30px;" data-ng-click="controller.fornecedor = undefined">Cancelar</button>
+                </form>
+            </div>
+
+            <div style="border: 1px solid royalblue;"
+                 data-ng-show="!controller.fornecedor">
+                <button type="button" style="width: 300px; height: 30px; margin: 0 50px;" data-ng-click="controller.novo()">Cadastrar Fornecedor</button><br>
+                <br>
+                <table style="margin: 0 50px;"  border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>CNPJ</th>
+                        <th>Comentários</th>
+
+                    </tr>
+                    <tr data-ng-repeat="fornecedor in controller.crudcontroller">
+                        <td>{{fornecedor.id_fornecedor}}</td>
+                        <td>{{fornecedor.nome}}</td>
+                        <td>{{fornecedor.email}}</td>
+                        <td>{{fornecedor.cnpj}}</td>
+                        <td>{{fornecedor.comentario}}</td>
+                        <td>
+                            <button type="button" style="width: 100px; height: 25px; margin: 0 15px;" data-ng-click="controller.alterar(fornecedor)">Alterar</button>
+                            <button type="button" style="width: 100px; height: 25px; margin: 0 15px;" data-ng-click="controller.deletar(fornecedor)">Excluir</button>                       
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="resources/angular.js"></script>    
+    <script src="resources/metodos.js"></script>    
+</body>
+</html>
+
+
+
